@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>١٠ أفكار مشاريع بـAPIs ببلاش | ميسرة حامد</title>
+<meta name="description" content="مشاريع حقيقية للبورتفوليو، وكل فكرة معاها الـAPI بتاعها.">
+<meta property="og:title" content="١٠ أفكار مشاريع بـAPIs ببلاش">
+<meta property="og:description" content="مشاريع حقيقية للبورتفوليو، وكل فكرة معاها الـAPI بتاعها.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d0b;--card:#121815;--line:#1f2a24;--text:#eef5f0;--muted:#93a39a;--green:#22c55e;--green2:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+main,p,li,h1,h2{overflow-wrap:anywhere}
+a.url{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%}
+body{font-family:"Alexandria",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;
+  background-image:radial-gradient(700px 400px at 80% -10%,rgba(34,197,94,.14),transparent 70%)}
+a{color:var(--green2)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto;padding:18px 20px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none;color:var(--text);font-weight:600}
+.top .back{color:var(--muted);font-size:15px}
+main{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.3;font-weight:800;margin-bottom:14px}
+h2{font-size:24px;font-weight:800;margin:34px 0 12px;color:var(--green2)}
+p{margin:10px 0;color:#d7e2db}
+p.note{border-right:4px solid var(--green);background:var(--card);padding:12px 16px;border-radius:12px;color:var(--muted)}
+ol,ul{padding-right:24px;margin:10px 0}
+li{margin:8px 0}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#1a221d;border:1px solid var(--line);padding:1px 7px;border-radius:7px;direction:ltr;unicode-bidi:isolate}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#0d120f;overflow:hidden}
+.code pre{padding:20px 18px 18px;overflow-x:auto;text-align:left}
+.code pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.copy{position:sticky;float:left;margin:10px;font:600 14px "Alexandria",sans-serif;color:#04150b;background:var(--green);border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+.copy.ok{background:var(--green2)}
+hr{border:0;border-top:1px solid var(--line);margin:36px 0 20px}
+.grid{display:grid;gap:14px;margin-top:22px}
+.card{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;transition:.2s}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .e{font-size:34px;width:58px;height:58px;display:grid;place-items:center;background:#1a221d;border-radius:16px;flex:none}
+.card b{display:block;font-size:19px}.card span{color:var(--muted);font-size:15px}
+.cta{margin-top:30px;text-align:center}
+.cta a{display:inline-block;background:var(--green);color:#04150b;font-weight:800;text-decoration:none;padding:14px 26px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="top"><a href="../../">ميسرة حامد · Web Developer</a><a class="back" href="../../free/">🎁 كل الهدايا</a></header>
+<main>
+<h1>١٠ أفكار مشاريع للبورتفوليو بـAPIs ببلاش 🎁</h1>
+<p>من ريل <strong>«+٢٠٠٠ API ببلاش لمشاريع البورتفوليو»</strong> على إنستجرام:</p>
+<p>👉 <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<p>كل الـAPIs دي موجودة في الريبو <strong>public-apis</strong> على GitHub (حوالي 500 ألف نجمة):</p>
+<p><a class="url" href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener">github.com/public-apis/public-apis</a></p>
+<p class="note"><strong>No key</strong> يعني تقدر تستخدمه على طول. <strong>API key</strong> يعني محتاج تعمل حساب ببلاش وتاخد key، وما ترفعهوش على GitHub.</p>
+<p class="note">افتح الـdocs بتاعة كل API قبل ما تبدأ، علشان الشروط والحدود ممكن تتغير.</p>
+<h2>الأفكار</h2>
+<ol>
+<li><strong>🌦️ تطبيق طقس لايف:</strong> المدينة، والحرارة، والأيام الجاية. الـAPI: <strong>Open-Meteo</strong> (No key).</li>
+<li><strong>💱 محوّل عملات:</strong> جنيه/دولار/يورو، مع رسم بياني لآخر شهر. الـAPI: <strong>Frankfurter</strong> (No key).</li>
+<li><strong>📖 آية اليوم + فهرس السور:</strong> بحث في السور، وتشغيل التلاوة. الـAPI: <strong>Quran Cloud</strong> (No key).</li>
+<li><strong>📚 قاموس إنجليزي:</strong> المعنى، والنطق، والأمثلة. الـAPI: <strong>Free Dictionary</strong> (No key).</li>
+<li><strong>📕 مكتبة كتب:</strong> بحث بالاسم، وصور الأغلفة، وليستة «عايز أقراه». الـAPI: <strong>Open Library</strong> (No key).</li>
+<li><strong>🐉 Pokédex:</strong> كروت، وفلتر بالنوع، وصفحة لكل بوكيمون. الـAPI: <strong>PokéAPI</strong> (No key).</li>
+<li><strong>😂 مولّد نكت:</strong> فلتر بالنوع، وزرار «نكتة تانية»، ومشاركة. الـAPI: <strong>JokeAPI</strong> (No key).</li>
+<li><strong>🗓️ الإجازات الرسمية:</strong> اختار الدولة والسنة، وعدّاد للإجازة الجاية. الـAPI: <strong>Nager.Date</strong> (No key).</li>
+<li><strong>🎬 موقع أفلام:</strong> الأكتر مشاهدة، وبحث، وصفحة لكل فيلم، وقايمة مفضلة. الـAPI: <strong>TMDb</strong> (API key).</li>
+<li><strong>⚽ نتايج الكورة:</strong> ماتشات النهارده، والترتيب، والهدافين. الـAPI: <strong>API-FOOTBALL</strong> (API key).</li>
+</ol>
+<p><strong>بونص:</strong> 🍝 موقع وصفات أكل بالمكونات. الـAPI: <strong>TheMealDB</strong> (API key).</p>
+<h2>علشان المشروع يفرق في البورتفوليو</h2>
+<ul>
+<li><strong>ارفعه أونلاين</strong> على GitHub Pages وحط اللينك. (شوف ريل البورتفوليو وريل الدومين على صفحتي.)</li>
+<li><strong>زوّد حاجة من عندك:</strong> dark mode، أو حفظ في localStorage، أو فلاتر، أو تصميم موبايل محترم.</li>
+<li><strong>README واضح:</strong> صورة للمشروع، والـAPI اللي استخدمته، وإزاي تشغّله.</li>
+</ul>
+<hr>
+<p>💼 <strong>عايز موقع احترافي لشغلك؟</strong> ابعتلي رسالة على إنستجرام:</p>
+<p><a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<div class="cta"><a href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">تابعني على إنستجرام ←</a></div>
+</main>
+<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const t=b.parentElement.querySelector('code').innerText;
+navigator.clipboard.writeText(t).then(()=>{b.textContent='✓ اتنسخ';b.classList.add('ok');setTimeout(()=>{b.textContent='📋 نسخ';b.classList.remove('ok')},1800)})}));</script>
+</body>
+</html>
