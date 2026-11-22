@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سؤال إنترفيو: Debounce | ميسرة حامد</title>
+<meta name="description" content="كود الـDebounce في ٥ سطور، ونسخة React، و٣ أسئلة إنترفيو بإجاباتها.">
+<meta property="og:title" content="سؤال إنترفيو: Debounce">
+<meta property="og:description" content="كود الـDebounce في ٥ سطور، ونسخة React، و٣ أسئلة إنترفيو بإجاباتها.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d0b;--card:#121815;--line:#1f2a24;--text:#eef5f0;--muted:#93a39a;--green:#22c55e;--green2:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+main,p,li,h1,h2{overflow-wrap:anywhere}
+a.url{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%}
+body{font-family:"Alexandria",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;
+  background-image:radial-gradient(700px 400px at 80% -10%,rgba(34,197,94,.14),transparent 70%)}
+a{color:var(--green2)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto;padding:18px 20px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none;color:var(--text);font-weight:600}
+.top .back{color:var(--muted);font-size:15px}
+main{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.3;font-weight:800;margin-bottom:14px}
+h2{font-size:24px;font-weight:800;margin:34px 0 12px;color:var(--green2)}
+p{margin:10px 0;color:#d7e2db}
+p.note{border-right:4px solid var(--green);background:var(--card);padding:12px 16px;border-radius:12px;color:var(--muted)}
+ol,ul{padding-right:24px;margin:10px 0}
+li{margin:8px 0}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#1a221d;border:1px solid var(--line);padding:1px 7px;border-radius:7px;direction:ltr;unicode-bidi:isolate}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#0d120f;overflow:hidden}
+.code pre{padding:20px 18px 18px;overflow-x:auto;text-align:left}
+.code pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.copy{position:sticky;float:left;margin:10px;font:600 14px "Alexandria",sans-serif;color:#04150b;background:var(--green);border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+.copy.ok{background:var(--green2)}
+hr{border:0;border-top:1px solid var(--line);margin:36px 0 20px}
+.grid{display:grid;gap:14px;margin-top:22px}
+.card{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;transition:.2s}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .e{font-size:34px;width:58px;height:58px;display:grid;place-items:center;background:#1a221d;border-radius:16px;flex:none}
+.card b{display:block;font-size:19px}.card span{color:var(--muted);font-size:15px}
+.cta{margin-top:30px;text-align:center}
+.cta a{display:inline-block;background:var(--green);color:#04150b;font-weight:800;text-decoration:none;padding:14px 26px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="top"><a href="../../">ميسرة حامد · Web Developer</a><a class="back" href="../../free/">🎁 كل الهدايا</a></header>
+<main>
+<h1>سؤال إنترفيو: Debounce في ٥ سطور ⏱</h1>
+<p>من ريل <strong>«سيرش بار واحد… وقّع السيرفر»</strong> على إنستجرام:</p>
+<p>👉 <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<h2>المشكلة 💥</h2>
+<ul>
+<li>كل حرف اليوزر بيكتبه في السيرش بيبعت <strong>Request</strong> للسيرفر.</li>
+<li>كلمة <code>iphone</code> لوحدها = <strong>٦ Requests</strong>. ولو عندك مليون يوزر بيكتبوا مع بعض، يبقى ٦ مليون Request والسيرفر يقع.</li>
+</ul>
+<h2>الحل: Debounce ✅</h2>
+<ul>
+<li>بدل ما تبعت مع كل حرف، <strong>استنّى</strong> لحد ما اليوزر يبطّل كتابة ٣٠٠ مللي ثانية.</li>
+<li>كل حرف جديد بيصفّر العدّاد (<code>clearTimeout</code>).</li>
+<li>لما اليوزر يقف، العدّاد يخلص (<code>setTimeout</code>) وتبعت <strong>Request واحد بس</strong>.</li>
+</ul>
+<h2>الكود: ٥ سطور JavaScript</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>let timer;
+input.addEventListener(&#x27;input&#x27;, (e) =&gt; {
+  clearTimeout(timer);
+  timer = setTimeout(() =&gt; search(e.target.value), 300);
+});</code></pre></div>
+<h2>نسخة تقدر تستخدمها في أي حتة</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>function debounce(fn, ms = 300) {
+  let timer;
+  return (...args) =&gt; {
+    clearTimeout(timer);
+    timer = setTimeout(() =&gt; fn(...args), ms);
+  };
+}
+
+// الاستخدام
+const onSearch = debounce((q) =&gt; fetch(`/api/search?q=${q}`), 300);
+input.addEventListener(&#x27;input&#x27;, (e) =&gt; onSearch(e.target.value));</code></pre></div>
+<h2>في React ⚛️</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>import { useEffect, useState } from &#x27;react&#x27;;
+
+function useDebounce(value, ms = 300) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() =&gt; {
+    const id = setTimeout(() =&gt; setDebounced(value), ms);
+    return () =&gt; clearTimeout(id); // كل حرف جديد يلغي اللي قبله
+  }, [value, ms]);
+  return debounced;
+}
+
+// جوه الكومبوننت
+const [query, setQuery] = useState(&#x27;&#x27;);
+const q = useDebounce(query, 300);
+useEffect(() =&gt; { if (q) fetch(`/api/search?q=${q}`); }, [q]);</code></pre></div>
+<hr>
+<h2>🎯 ٣ أسئلة إنترفيو زيّه (بإجاباتها)</h2>
+<h2>١ · إيه الفرق بين Debounce وThrottle؟</h2>
+<ul>
+<li><strong>Debounce:</strong> بيستنّى لحد ما الحدث <strong>يقف</strong>، وبعدين ينفّذ مرة واحدة. مناسب للسيرش وفورم الـvalidation.</li>
+<li><strong>Throttle:</strong> بينفّذ <strong>مرة كل فترة ثابتة</strong> مهما الحدث اتكرر، مثلًا مرة كل ٢٠٠ مللي ثانية. مناسب للـscroll والـresize.</li>
+<li><strong>مثال تقوله:</strong> «الـscroll بيحصل ١٠٠ مرة في الثانية، بالـThrottle بنفّذ ٥ مرات بس.»</li>
+</ul>
+<h2>٢ · صفحة فيها ١٠٠ صورة… إزاي تخليها تفتح بسرعة؟</h2>
+<ul>
+<li><strong>Lazy Loading:</strong> الصور اللي تحت متتحمّلش غير لما اليوزر يقرب منها.</li>
+<li>أسهل طريقة سطر واحد في HTML:</li>
+</ul>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>&lt;img src=&quot;photo.jpg&quot; loading=&quot;lazy&quot; alt=&quot;...&quot; width=&quot;400&quot; height=&quot;300&quot;&gt;</code></pre></div>
+<ul>
+<li>حط <code>width</code> و<code>height</code> علشان الصفحة متتنططش وهي بتحمّل (CLS).</li>
+<li>للحاجات المتقدمة: <code>IntersectionObserver</code>.</li>
+</ul>
+<h2>٣ · ليستة فيها ١٠٠٠ عنصر… تحط ١٠٠٠ Event Listener؟</h2>
+<ul>
+<li>لأ. استخدم <strong>Event Delegation</strong>: Listener واحد على الأب، وتعرف مين اتداس عليه من <code>e.target</code>.</li>
+</ul>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>list.addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  const item = e.target.closest(&#x27;li&#x27;);
+  if (item) console.log(&#x27;clicked&#x27;, item.dataset.id);
+});</code></pre></div>
+<ul>
+<li>ميزة كمان: العناصر الجديدة اللي بتتضاف بعدين بتشتغل تلقائي.</li>
+</ul>
+<hr>
+<h2>🤖 خلّي الـAI يطبّقها في مشروعك</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>My search input sends a request on every keystroke.
+Add a debounce of 300ms so it only calls the API after the user stops typing.
+Also cancel the previous in-flight request with AbortController,
+and show a small loading state. Keep my current code style.
+Here is my code: [paste]</code></pre></div>
+<p class="note">لو المحتوى ده فادك، ابعته لصاحبك اللي عنده إنترفيو فرونت إند 💪 وتابعني… كل يوم سؤال إنترفيو جديد 🎯</p>
+<div class="cta"><a href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">تابعني على إنستجرام ←</a></div>
+</main>
+<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const t=b.parentElement.querySelector('code').innerText;
+navigator.clipboard.writeText(t).then(()=>{b.textContent='✓ اتنسخ';b.classList.add('ok');setTimeout(()=>{b.textContent='📋 نسخ';b.classList.remove('ok')},1800)})}));</script>
+</body>
+</html>
