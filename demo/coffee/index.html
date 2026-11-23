@@ -494,7 +494,7 @@ if(window.gsap && !reduce){
 
   // reveals
   gsap.utils.toArray('.reveal').forEach((el,i)=>{
-    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',delay:(i%4)*.08,scrollTrigger:{trigger:el,start:'top 88%'}});
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:'power3.out',delay:(i%4)*.08,scrollTrigger:{trigger:el,start:'top 88%'},onComplete(){el.classList.remove('reveal');gsap.set(el,{clearProps:'all'});}});
   });
   // auto-flip menu cards once (shows the back)
   gsap.utils.toArray('.card').forEach((c,i)=>{
