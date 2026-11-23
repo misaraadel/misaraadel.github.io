@@ -357,10 +357,8 @@ function cupSVG(kind){
   if(cfg.art==='heart'){
     art=`<g fill="#f6e7d0"><path d="M200 168c-30-40-92-20-74 26 12 30 52 50 74 74 22-24 62-44 74-74 18-46-44-66-74-26z" opacity=".95"/><path d="M200 196c-16-22-50-11-40 14 7 16 28 27 40 40 12-13 33-24 40-40 10-25-24-36-40-14z" fill="#c99668" opacity=".55"/></g>`;
   } else if(cfg.art==='rosetta'){
-    let leaves='';
-    for(let i=0;i<8;i++){const y=262-i*17, w=74-i*7.5, h=26-i*1.2;
-      leaves+=`<path d="M${200-w} ${y-h}Q200 ${y+h*.9} ${200+w} ${y-h}Q200 ${y+h*.15} ${200-w} ${y-h}z" fill="#f6e7d0" opacity="${.97-i*.03}"/>`;}
-    art=`<g>${leaves}<path d="M200 128c-22-26-58-8-44 16 9 15 30 22 44 34 14-12 35-19 44-34 14-24-22-42-44-16z" fill="#f6e7d0"/><path d="M200 120L200 286" stroke="#f6e7d0" stroke-width="4" stroke-linecap="round" opacity=".9"/></g>`;
+    const H=(cy,k,o)=>`<path transform="translate(200 ${cy}) scale(${k})" d="M0 -18C-14 -40 -52 -34 -50 -6C-48 18 -18 30 0 46C18 30 48 18 50 -6C52 -34 14 -40 0 -18Z" fill="#f6e7d0" opacity="${o}"/>`;
+    art=`<g><path d="M200 120L200 290" stroke="#f6e7d0" stroke-width="4" stroke-linecap="round" opacity=".85"/>${H(250,1.15,.96)}${H(206,.9,.94)}${H(168,.66,.92)}${H(138,.42,.95)}<path transform="translate(200 250) scale(.62)" d="M0 -18C-14 -40 -52 -34 -50 -6C-48 18 -18 30 0 46C18 30 48 18 50 -6C52 -34 14 -40 0 -18Z" fill="#b98258" opacity=".35"/></g>`;
   } else if(cfg.art==='crema'){
     art=`<circle cx="200" cy="200" r="${C-6}" fill="url(#cr${id})"/><g fill="#e8b47a" opacity=".5"><circle cx="180" cy="186" r="5"/><circle cx="222" cy="214" r="3.5"/><circle cx="208" cy="176" r="2.5"/></g>`;
   } else {
