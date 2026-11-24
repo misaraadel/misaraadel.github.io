@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سؤال إنترفيو: السيرش بيعرض نتايج غلط | ميسرة حامد</title>
+<meta name="description" content="Race Condition والحل بـAbortController (JavaScript وReact)، و٣ أسئلة إنترفيو.">
+<meta property="og:title" content="سؤال إنترفيو: السيرش بيعرض نتايج غلط">
+<meta property="og:description" content="Race Condition والحل بـAbortController (JavaScript وReact)، و٣ أسئلة إنترفيو.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d0b;--card:#121815;--line:#1f2a24;--text:#eef5f0;--muted:#93a39a;--green:#22c55e;--green2:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+main,p,li,h1,h2{overflow-wrap:anywhere}
+a.url{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%}
+body{font-family:"Alexandria",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;
+  background-image:radial-gradient(700px 400px at 80% -10%,rgba(34,197,94,.14),transparent 70%)}
+a{color:var(--green2)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto;padding:18px 20px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none;color:var(--text);font-weight:600}
+.top .back{color:var(--muted);font-size:15px}
+main{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.3;font-weight:800;margin-bottom:14px}
+h2{font-size:24px;font-weight:800;margin:34px 0 12px;color:var(--green2)}
+p{margin:10px 0;color:#d7e2db}
+p.note{border-right:4px solid var(--green);background:var(--card);padding:12px 16px;border-radius:12px;color:var(--muted)}
+ol,ul{padding-right:24px;margin:10px 0}
+li{margin:8px 0}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#1a221d;border:1px solid var(--line);padding:1px 7px;border-radius:7px;direction:ltr;unicode-bidi:isolate}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#0d120f;overflow:hidden}
+.code pre{padding:20px 18px 18px;overflow-x:auto;text-align:left}
+.code pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.copy{position:sticky;float:left;margin:10px;font:600 14px "Alexandria",sans-serif;color:#04150b;background:var(--green);border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+.copy.ok{background:var(--green2)}
+hr{border:0;border-top:1px solid var(--line);margin:36px 0 20px}
+.grid{display:grid;gap:14px;margin-top:22px}
+.card{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;transition:.2s}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .e{font-size:34px;width:58px;height:58px;display:grid;place-items:center;background:#1a221d;border-radius:16px;flex:none}
+.card b{display:block;font-size:19px}.card span{color:var(--muted);font-size:15px}
+.cta{margin-top:30px;text-align:center}
+.cta a{display:inline-block;background:var(--green);color:#04150b;font-weight:800;text-decoration:none;padding:14px 26px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="top"><a href="../../">ميسرة حامد · Web Developer</a><a class="back" href="../../free/">🎁 كل الهدايا</a></header>
+<main>
+<h1>سؤال إنترفيو: السيرش بيعرض نتايج غلط 😱 (Race Condition)</h1>
+<p>من ريل <strong>«كتب iPhone… طلعله سامسونج»</strong> على إنستجرام:</p>
+<p>👉 <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<h2>المشكلة 💥</h2>
+<ul>
+<li>اليوزر كتب <code>ip</code>، فاتبعت <strong>Request</strong> للسيرفر.</li>
+<li>كمّل كتابة <code>iphone</code>، فاتبعت <strong>Request تاني</strong>.</li>
+<li>الـRequest الأولاني كان أبطأ، فوصل <strong>الآخر</strong>، وكتب نتايجه (جرابات سامسونج 🙃) فوق النتايج الصح.</li>
+<li>اسمها في الإنترفيو: <strong>Race Condition</strong>. فيه Requestين بيتسابقوا، واللي يوصل الآخر هو اللي يكسب، حتى لو نتيجته غلط.</li>
+</ul>
+<h2>الحل: AbortController ✅</h2>
+<p>قبل ما تبعت Request جديد، <strong>الغي القديم</strong>. فالقديم مش هيوصل أصلاً.</p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>let controller;
+
+async function search(q) {
+  controller?.abort();                    // الغي الـRequest القديم 🚫
+  controller = new AbortController();
+
+  try {
+    const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+      signal: controller.signal,
+    });
+    render(await res.json());
+  } catch (err) {
+    if (err.name === &#x27;AbortError&#x27;) return; // ده الإلغاء بتاعنا، مش error حقيقي
+    throw err;
+  }
+}</code></pre></div>
+<h2>مع الـDebounce (السيرش الكامل) ⏱ + 🚫</h2>
+<p>الـDebounce بيقلل عدد الـRequests، والـAbortController بيضمن إن آخر Request بس هو اللي يتعرض. الاتنين مع بعض يدّوك سيرش <strong>سريع وصح</strong>.</p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>let timer, controller;
+
+input.addEventListener(&#x27;input&#x27;, (e) =&gt; {
+  clearTimeout(timer);
+  timer = setTimeout(() =&gt; search(e.target.value), 300);
+});</code></pre></div>
+<p>(<code>search</code> هي نفس الفانكشن اللي فوق.)</p>
+<h2>في React ⚛️</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>function useSearch(query) {
+  const [results, setResults] = useState([]);
+
+  useEffect(() =&gt; {
+    if (!query) return setResults([]);
+    const controller = new AbortController();
+
+    const timer = setTimeout(async () =&gt; {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`, {
+          signal: controller.signal,
+        });
+        setResults(await res.json());
+      } catch (err) {
+        if (err.name !== &#x27;AbortError&#x27;) console.error(err);
+      }
+    }, 300);
+
+    return () =&gt; {            // كل ما الـquery يتغير: الغي التايمر والـRequest القديم
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query]);
+
+  return results;
+}</code></pre></div>
+<hr>
+<h2>🎯 ٣ أسئلة إنترفيو زيّه بإجاباتها</h2>
+<p><strong>١) ليه الـcleanup function في <code>useEffect</code> مهمة هنا؟</strong></p>
+<ul>
+<li>بتشتغل قبل الـeffect الجديد. فلو اليوزر كتب حرف جديد، بتلغي التايمر والـRequest القديم، ومفيش نتيجة قديمة تكتب فوق الجديدة. ومن غيرها هيحصل Race Condition، أو <code>setState</code> على كومبوننت اتشال.</li>
+</ul>
+<p><strong>٢) إيه الفرق بين <code>Promise.all</code> و<code>Promise.race</code> و<code>Promise.allSettled</code>؟</strong></p>
+<ul>
+<li><code>all</code>: بيستنى الكل، ولو واحد فشل الكل يفشل.</li>
+<li><code>race</code>: بيرجّع أول واحد يخلص، سواء نجح أو فشل. ومفيد للـtimeout.</li>
+<li><code>allSettled</code>: بيستنى الكل ويرجعلك نتيجة كل واحد (نجح أو فشل) من غير ما يقع.</li>
+</ul>
+<p><strong>٣) إزاي تعمل timeout لـ<code>fetch</code>؟</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>const res = await fetch(url, { signal: AbortSignal.timeout(5000) }); // ٥ ثواني وبعدين يتلغي</code></pre></div>
+<p class="note">لو المحتوى ده فادك، ابعته لصاحبك اللي بيذاكر للإنترفيو 💜 وتابعني علشان تعدّي الإنترفيو بتاعك 🎯</p>
+<div class="cta"><a href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">تابعني على إنستجرام ←</a></div>
+</main>
+<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const t=b.parentElement.querySelector('code').innerText;
+navigator.clipboard.writeText(t).then(()=>{b.textContent='✓ اتنسخ';b.classList.add('ok');setTimeout(()=>{b.textContent='📋 نسخ';b.classList.remove('ok')},1800)})}));</script>
+</body>
+</html>
