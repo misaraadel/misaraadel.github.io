@@ -1,0 +1,9 @@
+{
+  "name": "typing-chat",
+  "version": "1.0.0",
+  "description": "شات صغير بـ«بيكتب…» زي واتساب باستخدام WebSocket",
+  "main": "server.js",
+  "type": "module",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "ws": "^8.18.0" }
+}
