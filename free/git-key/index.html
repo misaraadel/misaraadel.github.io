@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مسحت المفتاح من الكود؟ لسه مكشوف | ميسرة حامد</title>
+<meta name="description" content="اختبار الريبو في دقيقتين، وأول ٣ خطوات لو مفتاحك اتسرّب، وتمسحه من الـhistory، و.env و.gitignore صح، وبرومبت قبل ما ترفع.">
+<meta property="og:title" content="مسحت المفتاح من الكود؟ لسه مكشوف">
+<meta property="og:description" content="اختبار الريبو في دقيقتين، وأول ٣ خطوات لو مفتاحك اتسرّب، وتمسحه من الـhistory، و.env و.gitignore صح، وبرومبت قبل ما ترفع.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d0b;--card:#121815;--line:#1f2a24;--text:#eef5f0;--muted:#93a39a;--green:#22c55e;--green2:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+main,p,li,h1,h2{overflow-wrap:anywhere}
+a.url{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%}
+body{font-family:"Alexandria",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;
+  background-image:radial-gradient(700px 400px at 80% -10%,rgba(34,197,94,.14),transparent 70%)}
+a{color:var(--green2)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto;padding:18px 20px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none;color:var(--text);font-weight:600}
+.top .back{color:var(--muted);font-size:15px}
+main{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.3;font-weight:800;margin-bottom:14px}
+h2{font-size:24px;font-weight:800;margin:34px 0 12px;color:var(--green2)}
+p{margin:10px 0;color:#d7e2db}
+p.note{border-right:4px solid var(--green);background:var(--card);padding:12px 16px;border-radius:12px;color:var(--muted)}
+ol,ul{padding-right:24px;margin:10px 0}
+li{margin:8px 0}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#1a221d;border:1px solid var(--line);padding:1px 7px;border-radius:7px;direction:ltr;unicode-bidi:isolate}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#0d120f;overflow:hidden}
+.code pre{padding:20px 18px 18px;overflow-x:auto;text-align:left}
+.code pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.copy{position:sticky;float:left;margin:10px;font:600 14px "Alexandria",sans-serif;color:#04150b;background:var(--green);border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+.copy.ok{background:var(--green2)}
+hr{border:0;border-top:1px solid var(--line);margin:36px 0 20px}
+.grid{display:grid;gap:14px;margin-top:22px}
+.card{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;transition:.2s}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .e{font-size:34px;width:58px;height:58px;display:grid;place-items:center;background:#1a221d;border-radius:16px;flex:none}
+.card b{display:block;font-size:19px}.card span{color:var(--muted);font-size:15px}
+.cta{margin-top:30px;text-align:center}
+.cta a{display:inline-block;background:var(--green);color:#04150b;font-weight:800;text-decoration:none;padding:14px 26px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="top"><a href="../../">ميسرة حامد · Web Developer</a><a class="back" href="../../free/">🎁 كل الهدايا</a></header>
+<main>
+<h1>مسحت المفتاح من الكود؟ لسه مكشوف 🔒 الخطوات كاملة</h1>
+<p>من ريل <strong>«غلطات مواقع الـAI #٤: المفتاح المكشوف»</strong> على إنستجرام:</p>
+<p>👉 <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<p>لما ترفع مفتاح (API key) على GitHub وبعدين تمسحه في commit جديد، <strong>المفتاح بيفضل موجود في الـhistory</strong>. أي حد يقدر يفتح الكوميتات القديمة ويلاقيه. وفيه بوتات بتدوّر في الريبوهات الـpublic على مفاتيح زي <code>sk-</code> و<code>AKIA</code> و<code>ghp_</code>، وبتلاقيها في دقايق.</p>
+<p>💡 الكلام ده على الريبو الـ<strong>Public</strong>. وحتى لو الريبو Private، اتعامل مع المفتاح على إنه اتسرّب لو حد تاني معاه access.</p>
+<hr>
+<h2>✅ اختبر الريبو بتاعك دلوقتي (دقيقتين)</h2>
+<ol>
+<li>افتح أي فايل في الريبو على GitHub.</li>
+<li>في اللينك، غيّر <code>github.com</code> لـ <code>github.githistory.xyz</code> واتفرّج على كل نسخ الفايل.</li>
+<li>أو من التيرمنال جوه فولدر المشروع:</li>
+</ol>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>git log -p | grep -n -E &quot;sk-|api_key|apiKey|SECRET|TOKEN&quot;</code></pre></div>
+<p>لو طلعلك أي مفتاح حقيقي، كمّل الخطوات اللي تحت <strong>فورًا</strong>.</p>
+<hr>
+<h2>🚨 أول ٣ خطوات لو مفتاحك اتسرّب (بالترتيب ده)</h2>
+<ol>
+<li><strong>اعمل Revoke للمفتاح</strong> من حسابك عند الخدمة نفسها (OpenAI، Google، Stripe…)، واعمل واحد جديد. <strong>دي أهم خطوة.</strong> مسح المفتاح من الكود مش بيوقفه، لكن الـRevoke بيخلّيه ميشتغلش خالص.</li>
+<li><strong>بُص على الفاتورة والـUsage</strong> في الحساب، وحط <strong>حد أقصى للصرف (Usage limit)</strong> علشان لو حصلت تاني ماتتفاجئش.</li>
+<li><strong>حط المفتاح الجديد في <code>.env</code></strong> مش في الكود (الخطوات تحت)، واتأكد إنه مش بيروح للمتصفح.</li>
+</ol>
+<hr>
+<h2>🧹 تمسحه من الـhistory صح (اختياري، بعد الـRevoke)</h2>
+<p>بعد ما تعمل Revoke، المفتاح القديم بقى ملوش لازمة. لكن لو عايز تنضّف الريبو:</p>
+<p><strong>بـ git-filter-repo:</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>pip install git-filter-repo
+echo &#x27;sk-proj-OLD_KEY_HERE==&gt;REMOVED&#x27; &gt; replace.txt
+git filter-repo --replace-text replace.txt
+git push --force --all</code></pre></div>
+<ul>
+<li><code>--force</code> بيغيّر الـhistory، فلو فيه ناس تانية شغالة معاك على الريبو قولّهم يعملوا clone من جديد.</li>
+<li>النسخ اللي حد عملها fork أو clone قبل كده <strong>مش هتتمسح</strong>. علشان كده الـRevoke هو الأساس.</li>
+<li>بديل أسهل: <strong>BFG Repo-Cleaner</strong>.</li>
+</ul>
+<hr>
+<h2>🔐 <code>.env</code> و<code>.gitignore</code> صح</h2>
+<p><strong>١) اعمل ملف <code>.env</code> في فولدر المشروع:</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>OPENAI_API_KEY=sk-proj-xxxxxxxx</code></pre></div>
+<p><strong>٢) ضيف <code>.env</code> في <code>.gitignore</code> قبل أول commit:</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>.env
+.env.*
+!.env.example</code></pre></div>
+<p><strong>٣) اعمل <code>.env.example</code> من غير القيم الحقيقية علشان اللي ياخد الريبو يعرف محتاج إيه:</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>OPENAI_API_KEY=</code></pre></div>
+<p><strong>٤) اقرا المفتاح في الكود (Node.js):</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>import &#x27;dotenv/config&#x27;;
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });</code></pre></div>
+<p><strong>٥) لو <code>.env</code> اترفع قبل كده:</strong></p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>git rm --cached .env
+git commit -m &quot;stop tracking .env&quot;</code></pre></div>
+<p>وبعدها <strong>اعمل Revoke للمفتاح</strong> برضو، لإنه موجود في الـhistory.</p>
+<p>⚠️ أي متغيّر بيبدأ بـ<code>VITE_</code> أو <code>NEXT_PUBLIC_</code> أو <code>REACT_APP_</code> <strong>بيتحط في كود المتصفح</strong>، يعني أي زائر يقدر يشوفه. مفاتيح الـAI لازم تفضل على السيرفر (Serverless Function مثلًا). الشرح كامل في هدية <a href="https://misaraadel.github.io/free/api-key/">الـAPI Key بتاعك مكشوف</a>.</p>
+<hr>
+<h2>🛡️ خلّي GitHub يحميك</h2>
+<ul>
+<li><strong>Settings ← Code security ← Secret Protection / Push protection</strong>: GitHub بيمنعك ترفع commit فيه مفتاح معروف قبل ما يتنشر.</li>
+<li><strong>Dependabot / Secret scanning alerts</strong>: بيبعتلك تنبيه لو لقى مفتاح في الريبو.</li>
+</ul>
+<hr>
+<h2>🤖 برومبت تدّيه للـAI قبل ما ترفع أي مشروع</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>راجع المشروع ده قبل ما أرفعه على GitHub:
+- طلّعلي أي API key أو password أو token مكتوب في الكود مباشرة.
+- انقلهم لملف .env، واعمل .env.example، وضيف .env في .gitignore.
+- اتأكد إن مفيش مفتاح سري بيوصل لكود المتصفح (VITE_ / NEXT_PUBLIC_ / REACT_APP_)، ولو فيه انقله لـ serverless function.
+- اكتبلي الملفات اللي اتغيرت كاملة.</code></pre></div>
+<div class="cta"><a href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">تابعني على إنستجرام ←</a></div>
+</main>
+<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const t=b.parentElement.querySelector('code').innerText;
+navigator.clipboard.writeText(t).then(()=>{b.textContent='✓ اتنسخ';b.classList.add('ok');setTimeout(()=>{b.textContent='📋 نسخ';b.classList.remove('ok')},1800)})}));</script>
+</body>
+</html>
