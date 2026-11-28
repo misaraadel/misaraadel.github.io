@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>طَبلية · منيو 3D بالسكرول</title>
+<meta name="description" content="ديمو منيو مطعم مصري 3D بالسكرول: كشري، فطير، حواوشي، فول. معمول بـHTML وCSS وJavaScript بس، من ميسرة حامد.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #120c08; --ink: #f6eadb; --mute: #b9a58d; --gold: #e8b04b; --red: #c8452c; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; }
+body { background: var(--bg); color: var(--ink); font-family: "Alexandria", sans-serif; overflow-x: hidden; }
+nav { position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 22px 5vw; background: linear-gradient(rgba(18,12,8,.9), transparent); }
+.logo { font-weight: 800; font-size: 28px; letter-spacing: .5px; } .logo span { color: var(--gold); }
+.links { display: flex; gap: 34px; font-size: 15px; color: var(--mute); } .links a { color: inherit; text-decoration: none; }
+.cta { background: var(--gold); color: #1c1206; font-weight: 800; font-size: 15px; padding: 10px 22px 13px; border-radius: 999px; text-decoration: none; }
+#track { height: 520vh; position: relative; }
+#stage { position: sticky; top: 0; height: 100vh; overflow: hidden;
+  background: radial-gradient(60vw 60vh at 50% 58%, rgba(232,176,75,.16), transparent 70%), radial-gradient(90vw 80vh at 50% 120%, #2a170c, transparent 70%); }
+#ghost { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; font-weight: 800; font-size: 26vw; line-height: 1; white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(232,176,75,.13); pointer-events: none; }
+#plateWrap { position: absolute; left: 50%; top: 56%; width: min(46vw, 70vh); height: min(46vw, 70vh); transform: translate(-50%, -50%); perspective: 1400px; }
+.dish { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform, opacity; }
+.dish img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 40px 40px rgba(0,0,0,.65)) saturate(1.08) contrast(1.04); }
+#shadow { position: absolute; left: 50%; top: 74%; width: min(40vw, 60vh); height: min(9vw, 13vh); transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.75), transparent); filter: blur(6px); }
+.steam { position: absolute; left: 50%; top: 30%; width: 8vw; height: 26vh; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,240,220,.22), transparent); filter: blur(14px); pointer-events: none; }
+#info { position: absolute; right: 6vw; top: 50%; transform: translateY(-50%); width: 25vw; }
+#num { font-size: 15px; color: var(--gold); letter-spacing: 2px; }
+#name { font-weight: 800; font-size: clamp(44px, 5.6vw, 92px); line-height: 1.15; margin-top: 6px; }
+#en { font-family: "Playfair Display", serif; font-style: italic; font-size: clamp(18px, 1.6vw, 26px); color: var(--mute); margin-top: 2px; direction: ltr; text-align: right; }
+#desc { font-size: clamp(14px, 1.05vw, 17px); line-height: 1.9; color: var(--mute); margin-top: 18px; }
+#side { position: absolute; left: 6vw; top: 50%; transform: translateY(-50%); text-align: left; direction: ltr; }
+#price { font-weight: 800; font-size: clamp(36px, 3.6vw, 60px); color: var(--ink); } #price small { font-size: .42em; color: var(--mute); margin-left: 6px; }
+#order { display: inline-block; margin-top: 16px; padding: 12px 26px 15px; border-radius: 999px; border: 1.5px solid var(--gold); color: var(--gold); font-weight: 700; font-size: 15px; text-decoration: none; direction: rtl; }
+#dots { position: absolute; bottom: 5vh; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; direction: ltr; }
+#dots i { width: 34px; height: 4px; border-radius: 2px; background: rgba(246,234,219,.18); overflow: hidden; position: relative; }
+#dots i b { position: absolute; inset: 0; background: var(--gold); transform-origin: 0 50%; }
+#hint { position: absolute; bottom: 10vh; left: 50%; transform: translateX(-50%); font-size: 13px; color: var(--mute); letter-spacing: 1px; }
+.fade { will-change: opacity, transform; }
+footer { padding: 60px 6vw 70px; text-align: center; color: var(--mute); font-size: 14px; line-height: 2; border-top: 1px solid rgba(246,234,219,.08); }
+footer a { color: var(--gold); }
+@media (max-width: 760px) {
+  .links { display: none; }
+  #plateWrap { width: 84vw; height: 84vw; top: 60%; }
+  #shadow { width: 70vw; height: 14vw; top: 72%; }
+  #info { right: 6vw; left: 6vw; width: auto; top: 13vh; transform: none; text-align: center; }
+  #en { text-align: center; } #desc { display: none; }
+  #side { left: 0; right: 0; top: auto; bottom: 9vh; transform: none; text-align: center; }
+  #price { font-size: 34px; } #order { margin-top: 8px; }
+  #ghost { font-size: 40vw; }
+  #hint { display: none; } #dots { bottom: 4vh; }
+}
+</style>
+</head>
+<body>
+<nav><div class="logo">طَبلية<span>.</span></div><div class="links"><a href="#">المنيو</a><a href="#">الفروع</a><a href="#">عن طبلية</a></div><a class="cta" href="#">اطلب دلوقتي</a></nav>
+<div id="track"><div id="stage">
+  <div id="ghost"></div>
+  <div id="shadow"></div>
+  <div id="plateWrap"></div>
+  <div class="steam" id="st1"></div><div class="steam" id="st2"></div>
+  <div id="info" class="fade"><div id="num"></div><div id="name"></div><div id="en"></div><p id="desc"></p></div>
+  <div id="side" class="fade"><div id="price"></div><a id="order" href="#">أضف للطلب +</a></div>
+  <div id="dots"></div>
+  <div id="hint">اعمل سكرول ↓</div>
+</div></div>
+<footer>ديمو لمنيو مطعم 3D بالسكرول · HTML + CSS + JavaScript بس، من غير مكتبات<br>
+صُمم بواسطة <a href="https://misara-hamed.vercel.app/">ميسرة حامد</a> · عايز واحد لمطعمك؟ <a href="https://www.instagram.com/misarahamed.webdeveloper/">ابعتلي على إنستجرام</a><br>
+<small>صور الأكل من Wikimedia Commons (CC BY-SA 4.0): Dina Said · Mohamed Ouda · Mohamed Moheyeldin · Miansari66 (CC0)</small></footer>
+<script>
+const DISHES = [
+  { img: 'img/koshari.webp', name: 'كشري', en: 'Koshari', ghost: 'كشري', price: 45, desc: 'رز وعدس ومكرونة وحمص، وصلصة طماطم بالخل والتوم، وبصل محمّر مقرمش من فوق.' },
+  { img: 'img/feteer.webp', name: 'فطير مشلتت', en: 'Feteer Meshaltet', ghost: 'فطير', price: 120, desc: 'طبقات رقيقة بالسمنة البلدي، بيتخبز في الفرن لحد ما يحمّر. بيتاكل بالعسل أو الجبنة القديمة.' },
+  { img: 'img/hawawshi.webp', name: 'حواوشي', en: 'Hawawshi', ghost: 'حواوشي', price: 85, desc: 'لحمة مفرومة متتبّلة بالفلفل والبصل جوه عيش بلدي، ومتسوّية لحد ما تبقى مقرمشة.' },
+  { img: 'img/ful.webp', name: 'طبق فول', en: 'Ful Medames', ghost: 'فول', price: 35, desc: 'فول مدمّس بالزيت والكمون، ومعاه بيض وطماطم وزيتون وعيش سخن. فطار مصري أصلي.' },
+];
+const $ = (id) => document.getElementById(id);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = (k) => (k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+const ar = (n) => String(n).replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
+const els = DISHES.map((d) => { const e = document.createElement('div'); e.className = 'dish'; e.innerHTML = `<img src="${d.img}" alt="${d.name}">`; $('plateWrap').appendChild(e); return e; });
+$('dots').innerHTML = DISHES.map(() => '<i><b></b></i>').join('');
+const bars = [...$('dots').querySelectorAll('b')];
+let shown = -1;
+function showText(i) {
+  if (i === shown) return; shown = i; const d = DISHES[i];
+  $('num').textContent = `${ar(i + 1).padStart(2, '٠')} / ${ar(DISHES.length).padStart(2, '٠')}`;
+  $('name').textContent = d.name; $('en').textContent = d.en; $('desc').textContent = d.desc; $('ghost').textContent = d.ghost;
+  $('price').innerHTML = `${d.price}<small>EGP</small>`;
+}
+// p: 0 → 1 across the whole menu. Each dish holds, then swaps with a 3D spin.
+function render(p, time = performance.now() / 1000) {
+  const n = DISHES.length, x = clamp(p) * (n - 1);      // 0 … n-1
+  const i = Math.min(n - 1, Math.floor(x)), f = x - i;  // f: 0..1 between dish i and i+1
+  const swap = ease(clamp((f - .45) / .55));            // hold first half, swap in the second
+  els.forEach((e, k) => {
+    let o = 0, y = 0, s = 1, rz = 0, rx = 48;
+    const spin = x * 140 + Math.sin(time * .6) * 3;     // whole menu keeps turning with scroll
+    if (k === i) { o = 1 - swap; y = -swap * 55; s = 1 - swap * .35; rz = spin + swap * 90; rx = 48 + swap * 25; }
+    else if (k === i + 1) { o = swap; y = (1 - swap) * 60; s = .65 + swap * .35; rz = spin - (1 - swap) * 120; rx = 48 - (1 - swap) * 20; }
+    e.style.opacity = o.toFixed(3);
+    e.style.visibility = o < .002 ? 'hidden' : 'visible';
+    e.style.transform = `translateY(${y.toFixed(2)}%) rotateX(${rx.toFixed(2)}deg) rotateZ(${rz.toFixed(2)}deg) scale(${s.toFixed(4)})`;
+  });
+  const ti = swap > .5 ? Math.min(n - 1, i + 1) : i; showText(ti);
+  const tf = Math.abs(swap - .5) * 2;                    // text fades out/in around the swap
+  for (const id of ['info', 'side']) { $(id).style.opacity = (swap > 0 && swap < 1 ? tf : 1).toFixed(3); }
+  $('ghost').style.opacity = (swap > 0 && swap < 1 ? tf : 1).toFixed(3);
+  $('ghost').style.transform = `translateY(-50%) translateX(${(Math.sin(x * 1.3) * 3).toFixed(2)}vw)`;
+  bars.forEach((b, k) => { b.style.transform = `scaleX(${clamp(x - k + 1).toFixed(3)})`; });
+  $('hint').style.opacity = (1 - clamp(p * 12)).toFixed(3);
+  [['st1', 0], ['st2', 1.7]].forEach(([id, ph]) => { const k = ((time * .35 + ph / 3.4) % 1); const e = $(id);
+    e.style.opacity = (Math.sin(k * Math.PI) * .9).toFixed(3); e.style.transform = `translate(${(-50 + Math.sin(time + ph) * 40).toFixed(1)}%, ${(-k * 60).toFixed(1)}%) scale(${(.8 + k * .8).toFixed(3)})`; });
+}
+window.__render = render; // used by the reel recorder (deterministic frames)
+const prog = () => { const t = $('track'); const max = t.offsetHeight - innerHeight; return clamp((scrollY - t.offsetTop) / max); };
+if (!/static=1/.test(location.search)) { const loop = () => { render(prog()); requestAnimationFrame(loop); }; loop(); } else render(0, 0);
+</script>
+</body>
+</html>
