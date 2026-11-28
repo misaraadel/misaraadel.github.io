@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>منيو مطعم 3D بالسكرول | ميسرة حامد</title>
+<meta name="description" content="ديمو حقيقي تجرّبه، والفكرة في ٣ خطوات، وكود ملف واحد، وصور أكل من غير خلفية ببلاش، وبرومبت يعملهولك لمطعمك.">
+<meta property="og:title" content="منيو مطعم 3D بالسكرول">
+<meta property="og:description" content="ديمو حقيقي تجرّبه، والفكرة في ٣ خطوات، وكود ملف واحد، وصور أكل من غير خلفية ببلاش، وبرومبت يعملهولك لمطعمك.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0d0b;--card:#121815;--line:#1f2a24;--text:#eef5f0;--muted:#93a39a;--green:#22c55e;--green2:#4ade80}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+main,p,li,h1,h2{overflow-wrap:anywhere}
+a.url{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%}
+body{font-family:"Alexandria",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;
+  background-image:radial-gradient(700px 400px at 80% -10%,rgba(34,197,94,.14),transparent 70%)}
+a{color:var(--green2)}
+.top{display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto;padding:18px 20px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none;color:var(--text);font-weight:600}
+.top .back{color:var(--muted);font-size:15px}
+main{max-width:860px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.3;font-weight:800;margin-bottom:14px}
+h2{font-size:24px;font-weight:800;margin:34px 0 12px;color:var(--green2)}
+p{margin:10px 0;color:#d7e2db}
+p.note{border-right:4px solid var(--green);background:var(--card);padding:12px 16px;border-radius:12px;color:var(--muted)}
+ol,ul{padding-right:24px;margin:10px 0}
+li{margin:8px 0}
+code{font-family:Menlo,Consolas,monospace;font-size:.92em;background:#1a221d;border:1px solid var(--line);padding:1px 7px;border-radius:7px;direction:ltr;unicode-bidi:isolate}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:16px;background:#0d120f;overflow:hidden}
+.code pre{padding:20px 18px 18px;overflow-x:auto;text-align:left}
+.code pre code{background:none;border:0;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.copy{position:sticky;float:left;margin:10px;font:600 14px "Alexandria",sans-serif;color:#04150b;background:var(--green);border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+.copy.ok{background:var(--green2)}
+hr{border:0;border-top:1px solid var(--line);margin:36px 0 20px}
+.grid{display:grid;gap:14px;margin-top:22px}
+.card{display:flex;gap:16px;align-items:center;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;transition:.2s}
+.card:hover{border-color:var(--green);transform:translateY(-2px)}
+.card .e{font-size:34px;width:58px;height:58px;display:grid;place-items:center;background:#1a221d;border-radius:16px;flex:none}
+.card b{display:block;font-size:19px}.card span{color:var(--muted);font-size:15px}
+.cta{margin-top:30px;text-align:center}
+.cta a{display:inline-block;background:var(--green);color:#04150b;font-weight:800;text-decoration:none;padding:14px 26px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="top"><a href="../../">ميسرة حامد · Web Developer</a><a class="back" href="../../free/">🎁 كل الهدايا</a></header>
+<main>
+<h1>منيو مطعم 3D بالسكرول 🍽️ الكود + البرومبت</h1>
+<p>من ريل <strong>«منيو مطعم مصري 3D»</strong> على إنستجرام:</p>
+<p>👉 <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<h2>👀 جرّب الموقع الحقيقي</h2>
+<p><a class="url" href="https://misaraadel.github.io/menu/" target="_blank" rel="noopener">misaraadel.github.io/menu</a></p>
+<p>افتحه من الموبايل أو الكمبيوتر واعمل سكرول: كل ما تنزل، الأكلة بتلف وتتبدّل بالأكلة اللي بعدها (كشري ← فطير ← حواوشي ← فول).</p>
+<p>الموقع ده <strong>HTML وCSS وJavaScript بس</strong>، من غير أي مكتبة. كل الحركة سببها CSS 3D transforms ومعاها سطرين JavaScript بيحسبوا الإنت نزلت قد إيه.</p>
+<hr>
+<h2>💡 الفكرة في ٣ خطوات</h2>
+<ol>
+<li><strong>قسم طويل وجواه حاجة sticky:</strong> القسم طوله <code>520vh</code>، وجواه شاشة <code>position: sticky</code> واقفة مكانها وإنت بتعمل سكرول.</li>
+<li><strong>بنحسب الإنت نزلت قد إيه</strong> (رقم من 0 لـ1):</li>
+</ol>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>const p = (scrollY - track.offsetTop) / (track.offsetHeight - innerHeight);</code></pre></div>
+<ol>
+<li><strong>الرقم ده بيحرّك كل حاجة:</strong> الطبق بيلف بـ<code>rotateZ</code> ومايل بـ<code>rotateX</code> علشان يبان 3D، وبين كل طبقين الطبق القديم بيطلع لفوق ويختفي والجديد بيدخل من تحت.</li>
+</ol>
+<hr>
+<h2>💻 الكود الأساسي (ملف واحد)</h2>
+<p>حط صور الأكل في فولدر <code>img</code> (يفضّل PNG أو WebP من غير خلفية) وغيّر الأسماء:</p>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;منيو 3D&lt;/title&gt;
+&lt;style&gt;
+  body { margin: 0; background: #120c08; color: #f6eadb; font-family: system-ui, sans-serif; }
+  #track { height: 500vh; }
+  #stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  #wrap { position: absolute; left: 50%; top: 55%; width: min(80vw, 70vh); aspect-ratio: 1; transform: translate(-50%, -50%); perspective: 1400px; }
+  .dish { position: absolute; inset: 0; }
+  .dish img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 40px 40px rgba(0,0,0,.6)); }
+  #name { position: absolute; top: 12vh; width: 100%; text-align: center; font-size: 56px; font-weight: 800; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;track&quot;&gt;&lt;div id=&quot;stage&quot;&gt;&lt;div id=&quot;name&quot;&gt;&lt;/div&gt;&lt;div id=&quot;wrap&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;script&gt;
+  const DISHES = [
+    { img: &#x27;img/koshari.webp&#x27;, name: &#x27;كشري&#x27; },
+    { img: &#x27;img/feteer.webp&#x27;,  name: &#x27;فطير مشلتت&#x27; },
+    { img: &#x27;img/hawawshi.webp&#x27;, name: &#x27;حواوشي&#x27; },
+    { img: &#x27;img/ful.webp&#x27;,     name: &#x27;طبق فول&#x27; },
+  ];
+  const wrap = document.getElementById(&#x27;wrap&#x27;), nameEl = document.getElementById(&#x27;name&#x27;);
+  const els = DISHES.map(d =&gt; { const e = document.createElement(&#x27;div&#x27;); e.className = &#x27;dish&#x27;; e.innerHTML = `&lt;img src=&quot;${d.img}&quot; alt=&quot;${d.name}&quot;&gt;`; wrap.appendChild(e); return e; });
+  const clamp = (v) =&gt; Math.min(1, Math.max(0, v));
+  const ease = (k) =&gt; k &lt; .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2;
+
+  function render() {
+    const track = document.getElementById(&#x27;track&#x27;);
+    const p = clamp((scrollY - track.offsetTop) / (track.offsetHeight - innerHeight));
+    const x = p * (DISHES.length - 1), i = Math.min(DISHES.length - 1, Math.floor(x));
+    const swap = ease(clamp((x - i - .45) / .55));       // الطبق ثابت نص الوقت، وبعدين يتبدّل
+    const spin = x * 140;                                 // الطبق بيلف مع السكرول
+    els.forEach((e, k) =&gt; {
+      let o = 0, y = 0, s = 1, rz = spin, rx = 48;
+      if (k === i)     { o = 1 - swap; y = -swap * 55; s = 1 - swap * .35; rz += swap * 90; }
+      if (k === i + 1) { o = swap; y = (1 - swap) * 60; s = .65 + swap * .35; rz -= (1 - swap) * 120; }
+      e.style.opacity = o;
+      e.style.transform = `translateY(${y}%) rotateX(${rx}deg) rotateZ(${rz}deg) scale(${s})`;
+    });
+    nameEl.textContent = DISHES[swap &gt; .5 ? Math.min(DISHES.length - 1, i + 1) : i].name;
+    requestAnimationFrame(render);
+  }
+  render();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+<p>افتحه بـ <strong>Live Server</strong> واعمل سكرول 🎉</p>
+<p>الكود الكامل بتاع الديمو (السعر، والوصف، والمؤشر، والبخار) موجود في الموقع نفسه: افتح الديمو ودوس <code>Ctrl + U</code>.</p>
+<hr>
+<h2>🖼️ صور الأكل من غير خلفية (ببلاش)</h2>
+<ul>
+<li><strong>remove.bg</strong> أو <strong>Photoroom</strong> من الموبايل: ارفع الصورة وهتنزل من غير خلفية.</li>
+<li><strong>أحسن زاوية:</strong> صوّر الطبق <strong>من فوق</strong> (top-down)، علشان لما يلف يبان طبيعي.</li>
+<li>صغّر الصورة لعرض ١٠٠٠ بيكسل تقريبًا، وحوّلها لـ <strong>WebP</strong> (من squoosh.app) علشان الموقع يفتح بسرعة.</li>
+<li>الصور اللي في الديمو من Wikimedia Commons (CC BY-SA 4.0).</li>
+</ul>
+<hr>
+<h2>🤖 برومبت تدّيه للـAI يعملك واحد لمطعمك</h2>
+<div class="code"><button class="copy" type="button">📋 نسخ</button><pre dir="ltr"><code>اعملي صفحة منيو لمطعم اسمه [اسم المطعم] بـ HTML وCSS وJavaScript بس في ملف واحد (من غير مكتبات):
+- قسم طوله 500vh وجواه شاشة sticky.
+- كل ما اليوزر يعمل سكرول، صورة الطبق (PNG من غير خلفية) تلف بـ rotateZ وتكون مايلة بـ rotateX(48deg) علشان تبان 3D.
+- بين كل طبقين: الطبق القديم يطلع لفوق ويصغر ويختفي، والجديد يدخل من تحت وهو بيلف.
+- جنب الطبق: اسم الأكلة بالعربي والإنجليزي، ووصف قصير، والسعر، وزرار &quot;أضف للطلب&quot;.
+- ألوان دافية (بني غامق ودهبي) وخط عربي حلو، ومؤشر تحت بيوضّح إحنا في أنهي طبق.
+- على الموبايل: الكلام فوق والطبق في النص والسعر تحت.
+- الأطباق: [كشري 45 ج.م، فطير 120 ج.م، ...]
+اكتب الكود كامل واشرحلي كل جزء في سطر.</code></pre></div>
+<hr>
+<h2>🍽️ عندك مطعم أو كافيه؟</h2>
+<p>بعملك منيو زي ده باسم مطعمك وأكلك الحقيقي، ويشتغل على الموبايل وفيه زرار طلب على واتساب.</p>
+<p>📩 ابعتلي رسالة على إنستجرام: <a class="url" href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">instagram.com/misarahamed.webdeveloper</a></p>
+<div class="cta"><a href="https://www.instagram.com/misarahamed.webdeveloper/" target="_blank" rel="noopener">تابعني على إنستجرام ←</a></div>
+</main>
+<script>document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{const t=b.parentElement.querySelector('code').innerText;
+navigator.clipboard.writeText(t).then(()=>{b.textContent='✓ اتنسخ';b.classList.add('ok');setTimeout(()=>{b.textContent='📋 نسخ';b.classList.remove('ok')},1800)})}));</script>
+</body>
+</html>
